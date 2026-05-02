@@ -42,7 +42,7 @@ export function Hero() {
             Available for opportunities
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold font-display text-white mb-4 leading-tight whitespace-pre-wrap">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-display text-white mb-4 leading-tight whitespace-pre-wrap">
             Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-200 to-primary-600">{content.hero_title || 'Ravichandran'}</span>
             <br />
             {content.hero_subtitle || 'Saravanan'}

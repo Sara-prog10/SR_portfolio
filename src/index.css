@@ -26,7 +26,7 @@
     cursor: none !important;
   }
   
-  body {
+  html, body {
     @apply bg-dark-950 text-gray-200 font-sans antialiased overflow-x-hidden;
   }
   

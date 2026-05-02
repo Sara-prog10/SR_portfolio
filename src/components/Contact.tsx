@@ -77,37 +77,37 @@ export function Contact() {
             transition={{ duration: 0.5 }}
             className="space-y-6"
           >
-              <div className="bg-dark-900 border border-gray-800 p-6 rounded-2xl flex items-center gap-6 group hover:border-gray-700 transition-colors">
-              <div className="w-14 h-14 rounded-full bg-dark-800 flex items-center justify-center text-primary-400 group-hover:bg-primary-500 group-hover:text-dark-900 transition-colors">
+              <div className="bg-dark-900 border border-gray-800 p-4 sm:p-6 rounded-2xl flex items-center gap-4 sm:gap-6 group hover:border-gray-700 transition-colors">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-full bg-dark-800 flex items-center justify-center text-primary-400 group-hover:bg-primary-500 group-hover:text-dark-900 transition-colors">
                 <Mail size={24} />
               </div>
-              <div>
-                <p className="text-sm text-gray-500 mb-1">Email</p>
-                <a href="mailto:saravanan511000@gmail.com" className="text-lg font-medium text-gray-200 hover:text-white">
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm text-gray-500 mb-1">Email</p>
+                <a href="mailto:saravanan511000@gmail.com" className="text-sm sm:text-lg font-medium text-gray-200 hover:text-white truncate block">
                   saravanan511000@gmail.com
                 </a>
               </div>
             </div>
 
-            <div className="bg-dark-900 border border-gray-800 p-6 rounded-2xl flex items-center gap-6 group hover:border-gray-700 transition-colors">
-              <div className="w-14 h-14 rounded-full bg-dark-800 flex items-center justify-center text-primary-400 group-hover:bg-primary-500 group-hover:text-dark-900 transition-colors">
+            <div className="bg-dark-900 border border-gray-800 p-4 sm:p-6 rounded-2xl flex items-center gap-4 sm:gap-6 group hover:border-gray-700 transition-colors">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-full bg-dark-800 flex items-center justify-center text-primary-400 group-hover:bg-primary-500 group-hover:text-dark-900 transition-colors">
                 <Github size={24} />
               </div>
-              <div>
-                <p className="text-sm text-gray-500 mb-1">GitHub</p>
-                <a href="#" className="text-lg font-medium text-gray-200 hover:text-white">
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm text-gray-500 mb-1">GitHub</p>
+                <a href="#" className="text-sm sm:text-lg font-medium text-gray-200 hover:text-white truncate block">
                   GitHub Profile
                 </a>
               </div>
             </div>
 
-            <div className="bg-dark-900 border border-gray-800 p-6 rounded-2xl flex items-center gap-6 group hover:border-gray-700 transition-colors">
-              <div className="w-14 h-14 rounded-full bg-dark-800 flex items-center justify-center text-white group-hover:bg-white group-hover:text-dark-900 transition-colors">
+            <div className="bg-dark-900 border border-gray-800 p-4 sm:p-6 rounded-2xl flex items-center gap-4 sm:gap-6 group hover:border-gray-700 transition-colors">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-full bg-dark-800 flex items-center justify-center text-white group-hover:bg-white group-hover:text-dark-900 transition-colors">
                 <Linkedin size={24} />
               </div>
-              <div>
-                <p className="text-sm text-gray-500 mb-1">Social</p>
-                <a href="#" className="text-lg font-medium text-gray-200 hover:text-white">
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm text-gray-500 mb-1">Social</p>
+                <a href="#" className="text-sm sm:text-lg font-medium text-gray-200 hover:text-white truncate block">
                   LinkedIn Profile
                 </a>
               </div>
@@ -124,7 +124,7 @@ export function Contact() {
           >
             <h3 className="text-xl font-bold text-white mb-6">Send a Message</h3>
             <form className="space-y-4" onSubmit={handleSubmit}>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-sm font-medium text-gray-400">Name</label>
                   <input 

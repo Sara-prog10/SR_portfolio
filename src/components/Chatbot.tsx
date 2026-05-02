@@ -101,12 +101,13 @@ export function Chatbot() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
             transition={{ delay: showTooltip && !isHovering ? 1 : 0, duration: 0.4 }}
-            className="fixed bottom-8 right-24 bg-dark-800/90 backdrop-blur-sm border border-yellow-500/30 text-white text-sm px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 z-40 max-w-[280px]"
+            className="fixed bottom-24 right-4 max-w-[calc(100vw-2rem)] sm:bottom-8 sm:right-24 bg-dark-800/90 backdrop-blur-sm border border-yellow-500/30 text-white text-sm px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 z-40 sm:max-w-[280px]"
           >
             <p className="leading-tight text-gray-200 font-medium">
               You can also ask questions regarding me with my AI assistant
             </p>
-            <span className="text-3xl drop-shadow-[0_0_12px_rgba(234,179,8,0.6)] animate-pulse">👉</span>
+            <span className="hidden sm:inline-block text-3xl drop-shadow-[0_0_12px_rgba(234,179,8,0.6)] animate-pulse">👉</span>
+            <span className="sm:hidden text-3xl drop-shadow-[0_0_12px_rgba(234,179,8,0.6)] animate-pulse">👇</span>
             <button
               onClick={() => setShowTooltip(false)}
               className="absolute -top-2 -right-2 bg-dark-900 border border-gray-700 text-gray-400 hover:text-white rounded-full p-1"
@@ -134,7 +135,7 @@ export function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 w-80 sm:w-96 bg-dark-900 border border-gray-700 rounded-2xl shadow-2xl z-50 overflow-hidden flex flex-col h-[500px] max-h-[calc(100vh-8rem)]"
+            className="fixed bottom-24 right-4 left-4 w-auto sm:left-auto sm:right-6 sm:w-96 bg-dark-900 border border-gray-700 rounded-2xl shadow-2xl z-50 overflow-hidden flex flex-col h-[500px] max-h-[calc(100vh-8rem)]"
           >
             {/* Header */}
             <div className="bg-dark-800 px-4 py-3 flex items-center justify-between border-b border-gray-700 flex-shrink-0">
