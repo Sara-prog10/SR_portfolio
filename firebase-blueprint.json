@@ -1,0 +1,51 @@
+{
+  "entities": {
+    "AdminConfig": {
+      "title": "Admin Config",
+      "description": "Determines who is an admin",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "createdAt": { "type": "number", "description": "Timestamp" }
+      },
+      "required": ["email", "createdAt"]
+    },
+    "ContentSection": {
+      "title": "Content Section",
+      "description": "Content block for the site",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "content": { "type": "string" },
+        "updatedAt": { "type": "number", "description": "Timestamp" }
+      },
+      "required": ["id", "content", "updatedAt"]
+    },
+    "ContactMessage": {
+      "title": "Contact Message",
+      "description": "Messages sent from the contact form",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "message": { "type": "string" },
+        "createdAt": { "type": "number", "description": "Timestamp" }
+      },
+      "required": ["name", "email", "message", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/admins/{uid}": {
+      "schema": { "$ref": "#/entities/AdminConfig" },
+      "description": "A list of admins"
+    },
+    "/content/{sectionId}": {
+      "schema": { "$ref": "#/entities/ContentSection" },
+      "description": "Content blocks for the site's sections"
+    },
+    "/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/ContactMessage" },
+      "description": "Messages sent from the contact form"
+    }
+  }
+}

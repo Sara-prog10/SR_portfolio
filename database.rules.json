@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "content": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "messages": {
+      ".read": "auth != null",
+      ".write": true
+    },
+    "admins": {
+      ".read": "auth != null",
+      ".write": false
+    }
+  }
+}

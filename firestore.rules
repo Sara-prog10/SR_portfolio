@@ -1,0 +1,82 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 0.1 Global Helpers
+    function isSignedIn() { return request.auth != null; }
+    function isAdmin() { return isSignedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); }
+    function isValidId(id) { return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+
+    // 0.2 Validation Helpers
+    function isValidAdmin(data) {
+      return data.keys().hasAll(['email', 'createdAt'])
+        && data.keys().size() == 2
+        && data.email is string
+        && data.email.size() <= 200
+        && data.createdAt is number;
+    }
+
+    function isValidContent(data) {
+      return data.keys().hasAll(['id', 'content', 'updatedAt'])
+        && data.keys().size() == 3
+        && data.id is string
+        && data.id.size() <= 128
+        && data.content is string
+        && data.content.size() <= 1048576
+        && data.updatedAt is number;
+    }
+
+    function isValidMessage(data) {
+      return data.keys().hasAll(['name', 'email', 'message', 'createdAt'])
+        && data.keys().size() == 4
+        && data.name is string
+        && data.name.size() <= 200
+        && data.name.size() > 0
+        && data.email is string
+        && data.email.size() <= 200
+        && data.email.size() > 0
+        && data.message is string
+        && data.message.size() <= 1048576
+        && data.message.size() > 0
+        && data.createdAt is number;
+    }
+
+    // Admins Collection:
+    // Only an admin can read/write admins.
+    match /admins/{uid} {
+      allow read: if isAdmin() || (isSignedIn() && request.auth.uid == uid);
+      allow update, delete: if isAdmin();
+    }
+
+    // Content Collection:
+    // Anyone can read content. Only admins can write.
+    match /content/{sectionId} {
+      allow read: if true;
+      allow create: if isAdmin()
+                    && isValidId(sectionId)
+                    && incoming().id == sectionId
+                    && isValidContent(incoming());
+      allow update: if isAdmin()
+                    && isValidId(sectionId)
+                    && isValidContent(incoming())
+                    && incoming().id == existing().id;
+      allow delete: if isAdmin() && isValidId(sectionId);
+    }
+
+    // Messages Collection:
+    // Anyone can create a message. Only admins can read/delete.
+    match /messages/{messageId} {
+      allow create: if isValidId(messageId)
+                    && isValidMessage(incoming())
+                    && incoming().createdAt == request.time.toMillis();
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}
