@@ -5,10 +5,11 @@ import { db, loginWithEmail, logOut } from '../lib/firebase';
 import { ref, onValue, remove } from 'firebase/database';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Save, LogOut, Check, Trash2, Mail, LayoutTemplate } from 'lucide-react';
-import { SKILLS, PROJECTS } from '../lib/constants';
+import { SKILLS, PROJECTS, EXPERIENCE } from '../lib/constants';
 import { HighlightsEditor } from '../components/admin/HighlightsEditor';
 import { SkillsEditor } from '../components/admin/SkillsEditor';
 import { ProjectsEditor } from '../components/admin/ProjectsEditor';
+import { ExperienceEditor } from '../components/admin/ExperienceEditor';
 
 export function Admin() {
   const { user, isAdmin, loading: authLoading } = useAuth();
@@ -81,7 +82,8 @@ export function Admin() {
       { icon: "Cpu", title: "IoT + AI", desc: "Edge AI, Sensor Integration, Embedded Systems" },
     ], null, 2)},
     { id: 'skills_list', label: 'Technical Arsenal', default: JSON.stringify(SKILLS, null, 2) },
-    { id: 'projects_list', label: 'Featured Projects', default: JSON.stringify(PROJECTS, null, 2) }
+    { id: 'projects_list', label: 'Featured Projects', default: JSON.stringify(PROJECTS, null, 2) },
+    { id: 'experience_list', label: 'Experience Timeline', default: JSON.stringify(EXPERIENCE, null, 2) }
   ];
 
   useEffect(() => {
@@ -335,6 +337,11 @@ export function Admin() {
                     />
                   ) : section.id === 'projects_list' ? (
                     <ProjectsEditor
+                      value={currentValue}
+                      onChange={(val) => handleEdit(section.id, val)}
+                    />
+                  ) : section.id === 'experience_list' ? (
+                    <ExperienceEditor
                       value={currentValue}
                       onChange={(val) => handleEdit(section.id, val)}
                     />

@@ -1,8 +1,20 @@
 import { motion } from "motion/react";
+import { useContent } from "../contexts/ContentContext";
 import { EXPERIENCE } from "../lib/constants";
 import { Briefcase } from "lucide-react";
 
 export function Experience() {
+  const { content } = useContent();
+
+  let experiences = EXPERIENCE;
+  if (content.experience_list) {
+    try {
+      experiences = JSON.parse(content.experience_list);
+    } catch(e) {
+      console.error("Failed to parse experiences", e);
+    }
+  }
+
   return (
     <section id="experience" className="py-24 bg-dark-900/30 relative">
       <div className="max-w-4xl mx-auto px-6">
@@ -18,7 +30,7 @@ export function Experience() {
         </motion.div>
 
         <div className="relative border-l border-gray-800 ml-3 md:ml-6 space-y-12 pb-8">
-          {EXPERIENCE.map((exp, idx) => (
+          {experiences.map((exp: any, idx: number) => (
             <motion.div
               key={exp.id}
               initial={{ opacity: 0, x: -20 }}

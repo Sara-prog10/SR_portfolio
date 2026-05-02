@@ -4,9 +4,10 @@ import { Navbar } from "./components/Navbar";
 import { About } from "./components/About";
 import { Skills } from "./components/Skills";
 import { Projects } from "./components/Projects";
+import { Experience } from "./components/Experience";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
-import { ChatbotMock } from "./components/ChatbotMock";
+import { Chatbot } from "./components/Chatbot";
 import { CustomCursor } from "./components/CustomCursor";
 import { Admin } from "./pages/Admin";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -21,10 +22,11 @@ function Portfolio() {
         <About />
         <Skills />
         <Projects />
+        <Experience />
         <Contact />
       </main>
       <Footer />
-      <ChatbotMock />
+      <Chatbot />
     </>
   );
 }
