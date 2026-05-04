@@ -36,6 +36,13 @@ export function Navbar() {
             <li key={link.label}>
               <a
                 href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.querySelector(link.href);
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
                 className="text-sm font-medium text-gray-400 hover:text-primary-400 transition-colors relative group"
               >
                 {link.label}
@@ -68,7 +75,16 @@ export function Navbar() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMobileMenuOpen(false);
+                      const element = document.querySelector(link.href);
+                      if (element) {
+                        setTimeout(() => {
+                          element.scrollIntoView({ behavior: "smooth" });
+                        }, 100);
+                      }
+                    }}
                     className="block text-gray-300 hover:text-primary-400 font-medium"
                   >
                     {link.label}
