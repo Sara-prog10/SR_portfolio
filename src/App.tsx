@@ -12,6 +12,7 @@ import { CustomCursor } from "./components/CustomCursor";
 import { Admin } from "./pages/Admin";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ContentProvider } from "./contexts/ContentContext";
+import { ScrollProgress } from "./components/ui/ScrollProgress";
 
 function Portfolio() {
   return (
@@ -27,6 +28,7 @@ function Portfolio() {
       </main>
       <Footer />
       <Chatbot />
+      <ScrollProgress />
     </>
   );
 }

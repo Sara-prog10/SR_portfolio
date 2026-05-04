@@ -101,7 +101,7 @@ export function Chatbot() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
             transition={{ delay: showTooltip && !isHovering ? 1 : 0, duration: 0.4 }}
-            className="fixed bottom-24 right-4 max-w-[calc(100vw-2rem)] sm:bottom-8 sm:right-24 bg-dark-800/90 backdrop-blur-sm border border-yellow-500/30 text-white text-sm px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 z-40 sm:max-w-[280px]"
+            className="fixed bottom-40 right-4 max-w-[calc(100vw-2rem)] sm:bottom-8 sm:right-24 bg-dark-800/90 backdrop-blur-sm border border-yellow-500/30 text-white text-sm px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 z-[60] sm:max-w-[280px]"
           >
             <p className="leading-tight text-gray-200 font-medium">
               You can also ask questions regarding me with my AI assistant
@@ -118,15 +118,18 @@ export function Chatbot() {
         )}
       </AnimatePresence>
 
-      <button
-        onClick={() => setIsOpen(true)}
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-primary-600 rounded-full shadow-lg shadow-primary-500/20 flex items-center justify-center text-white hover:bg-primary-500 hover:scale-105 transition-all z-40 group"
-        aria-label="Open AI Assistant"
-      >
-        <Bot size={24} className="group-hover:rotate-12 transition-transform" />
-      </button>
+      <div className="fixed bottom-24 right-4 sm:bottom-6 sm:right-6 z-[60]">
+        <button
+          onClick={() => setIsOpen(true)}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+          className="relative w-14 h-14 bg-primary-600 rounded-full shadow-[0_0_20px_rgba(212,175,55,0.4)] flex items-center justify-center text-white hover:bg-primary-500 hover:scale-110 transition-all group"
+          aria-label="Open AI Assistant"
+        >
+          <span className="absolute inset-0 w-full h-full rounded-full bg-primary-500/50 animate-ping opacity-75"></span>
+          <Bot size={24} className="relative z-10 group-hover:rotate-12 transition-transform" />
+        </button>
+      </div>
 
       <AnimatePresence>
         {isOpen && (
@@ -135,7 +138,7 @@ export function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-4 left-4 w-auto sm:left-auto sm:right-6 sm:w-96 bg-dark-900 border border-gray-700 rounded-2xl shadow-2xl z-50 overflow-hidden flex flex-col h-[500px] max-h-[calc(100vh-8rem)]"
+            className="fixed bottom-24 right-4 left-4 w-auto sm:left-auto sm:right-6 sm:w-96 bg-dark-900 border border-gray-700 rounded-2xl shadow-2xl z-[70] overflow-hidden flex flex-col h-[500px] max-h-[calc(100vh-8rem)] sm:bottom-24"
           >
             {/* Header */}
             <div className="bg-dark-800 px-4 py-3 flex items-center justify-between border-b border-gray-700 flex-shrink-0">

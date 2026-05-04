@@ -3,6 +3,7 @@ import { ArrowRight, Mail, Database, BrainCircuit, BarChart3, LineChart, Network
 import { useEffect, useState } from "react";
 import { useContent } from "../contexts/ContentContext";
 import { N8n, Claude } from '@lobehub/icons';
+import { MagneticButton } from "./ui/MagneticButton";
 
 export function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -124,16 +125,40 @@ export function Hero() {
             {content.hero_subtitle || 'Saravanan'}
           </h1>
 
-          <div className="h-10 mb-6">
-            <motion.p
-              key={titleIndex}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="text-xl md:text-2xl text-gray-400 font-medium"
-            >
-              {titles[titleIndex]}
-            </motion.p>
+          <div className="h-10 mb-6 pb-2">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={titleIndex}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={{
+                  visible: { transition: { staggerChildren: 0.05 } },
+                  hidden: { opacity: 0 },
+                  exit: { opacity: 0, transition: { duration: 0.2 } }
+                }}
+                className="text-xl md:text-2xl text-primary-400 font-medium font-mono"
+              >
+                &gt; I build{" "}
+                {titles[titleIndex].split("").map((char, index) => (
+                  <motion.span
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, scale: 0.5 },
+                      visible: { opacity: 1, scale: 1 },
+                      exit: { opacity: 0 }
+                    }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+                <motion.span
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 0.8, repeat: Infinity }}
+                  className="inline-block w-[3px] h-[1.2em] bg-primary-400 ml-1 align-middle"
+                />
+              </motion.p>
+            </AnimatePresence>
           </div>
 
           <p className="text-lg text-gray-400 mb-10 max-w-xl leading-relaxed whitespace-pre-wrap">
@@ -141,20 +166,14 @@ export function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <a
-              href="#projects"
-              className="px-6 py-3 rounded-lg bg-primary-600 hover:bg-primary-500 text-white font-medium flex items-center gap-2 transition-all group"
-            >
+            <MagneticButton as="a" href="#projects" className="px-6 py-3 rounded-lg bg-primary-600 hover:bg-primary-500 text-white font-medium flex items-center gap-2 transition-all group">
               View Projects
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
-              href="#contact"
-              className="px-6 py-3 rounded-lg bg-gray-800 hover:bg-gray-700 text-white font-medium border border-gray-700 flex items-center gap-2 transition-all"
-            >
+            </MagneticButton>
+            <MagneticButton as="a" href="#contact" className="px-6 py-3 rounded-lg bg-gray-800 hover:bg-gray-700 text-white font-medium border border-gray-700 flex items-center gap-2 transition-all">
               <Mail size={18} />
               Contact Me
-            </a>
+            </MagneticButton>
           </div>
         </motion.div>
 

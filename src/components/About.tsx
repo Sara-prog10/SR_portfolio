@@ -57,13 +57,16 @@ export function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-dark-900 border border-gray-800 p-6 rounded-xl hover:border-primary-500/50 transition-colors group"
+                  className="bg-dark-900 border border-gray-800 p-6 rounded-xl relative overflow-hidden group transition-all hover:-translate-y-1 hover:border-primary-500/30 hover:shadow-[0_10px_30px_-10px_rgba(212,175,55,0.1)]"
                 >
-                  <div className="w-12 h-12 bg-dark-800 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary-500/10 transition-colors">
-                    <Icon className="text-primary-400" size={24} />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="relative z-10">
+                    <div className="w-12 h-12 bg-dark-800 border border-gray-800 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary-500/10 group-hover:border-primary-500/30 transition-all">
+                      <Icon className="text-gray-400 group-hover:text-primary-400 transition-colors" size={24} />
+                    </div>
+                    <h3 className="text-white font-semibold mb-2 group-hover:text-primary-100 transition-colors">{item.title}</h3>
+                    <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors">{item.desc}</p>
                   </div>
-                  <h3 className="text-white font-semibold mb-2">{item.title}</h3>
-                  <p className="text-gray-400 text-sm">{item.desc}</p>
                 </motion.div>
               );
             })}

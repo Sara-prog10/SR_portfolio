@@ -31,9 +31,11 @@ export function Skills() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-min">
           {skillsList.map((skillGroup: any, groupIdx: number) => {
             const Icon = (LucideIcons as any)[skillGroup.icon] || LucideIcons.Code2;
+            const isLarge = groupIdx === 0 || groupIdx === 3;
+            
             return (
               <motion.div
                 key={groupIdx}
@@ -41,23 +43,26 @@ export function Skills() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: groupIdx * 0.1 }}
-                className="bg-dark-950 border border-gray-800 rounded-2xl p-6"
+                className={`bg-dark-950 border border-gray-800 rounded-3xl p-6 md:p-8 relative group overflow-hidden transition-all hover:border-primary-500/30 hover:shadow-[0_0_30px_rgba(212,175,55,0.05)] hover:-translate-y-1 ${isLarge ? 'md:col-span-2 md:row-span-2' : 'md:col-span-2 md:row-span-1 border-dashed'}`}
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-primary-500/10 rounded-lg">
-                    <Icon className="text-primary-400" size={20} />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary-500/5 rounded-full blur-3xl group-hover:bg-primary-500/10 transition-colors"></div>
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-3 bg-dark-800/80 rounded-xl border border-gray-800 group-hover:border-primary-500/50 group-hover:bg-primary-500/10 transition-all">
+                      <Icon className="text-gray-400 group-hover:text-primary-400 transition-colors" size={24} />
+                    </div>
+                    <h3 className="text-xl font-bold font-display text-white group-hover:text-primary-100 transition-colors">{skillGroup.category}</h3>
                   </div>
-                  <h3 className="text-lg font-semibold text-white">{skillGroup.category}</h3>
+                  
+                  <ul className={`grid gap-3 flex-grow ${isLarge ? 'grid-cols-2' : 'grid-cols-1 sm:grid-cols-2'}`}>
+                    {skillGroup.items.map((skill: string, idx: number) => (
+                      <li key={idx} className="flex items-center gap-3 text-gray-300 group-hover:text-gray-200 transition-colors px-3 py-2 bg-dark-900 border border-gray-800/50 rounded-lg group-hover:border-primary-500/20">
+                        <span className="w-1.5 h-1.5 rounded-full bg-gray-600 group-hover:bg-primary-500 transition-colors shadow-[0_0_8px_transparent] group-hover:shadow-primary-500/50"></span>
+                        <span className="text-sm font-medium">{skill}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                
-                <ul className="space-y-3">
-                  {skillGroup.items.map((skill: string, idx: number) => (
-                    <li key={idx} className="flex items-center gap-2 text-gray-300">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary-500/50"></span>
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
               </motion.div>
             );
           })}

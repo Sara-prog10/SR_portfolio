@@ -28,7 +28,7 @@ export const SKILLS = [
   {
     category: "Programming",
     icon: "Code2",
-    items: ["Python", "SQL", "Embedded C/C++"],
+    items: ["Python", "SQL", "Embedded C/C++", "HTML", "CSS", "JS", "React"],
   },
   {
     category: "Data Tools",

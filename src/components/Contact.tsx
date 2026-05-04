@@ -95,41 +95,41 @@ export function Contact() {
             transition={{ duration: 0.5 }}
             className="space-y-6"
           >
-              <div className="bg-dark-900 border border-gray-800 p-4 sm:p-6 rounded-2xl flex items-center gap-4 sm:gap-6 group hover:border-gray-700 transition-colors">
+              <a href="mailto:saravanan511000@gmail.com" className="bg-dark-900 border border-gray-800 p-4 sm:p-6 rounded-2xl flex items-center gap-4 sm:gap-6 group hover:border-gray-700 transition-colors cursor-pointer">
               <div className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-full bg-dark-800 flex items-center justify-center text-primary-400 group-hover:bg-primary-500 group-hover:text-dark-900 transition-colors">
                 <Mail size={24} />
               </div>
               <div className="min-w-0">
                 <p className="text-xs sm:text-sm text-gray-500 mb-1">Email</p>
-                <a href="mailto:saravanan511000@gmail.com" className="text-sm sm:text-lg font-medium text-gray-200 hover:text-white truncate block">
+                <div className="text-sm sm:text-lg font-medium text-gray-200 group-hover:text-white truncate block">
                   saravanan511000@gmail.com
-                </a>
+                </div>
               </div>
-            </div>
+            </a>
 
-            <div className="bg-dark-900 border border-gray-800 p-4 sm:p-6 rounded-2xl flex items-center gap-4 sm:gap-6 group hover:border-gray-700 transition-colors">
+            <a href="https://github.com/Sara-prog10" target="_blank" rel="noopener noreferrer" className="bg-dark-900 border border-gray-800 p-4 sm:p-6 rounded-2xl flex items-center gap-4 sm:gap-6 group hover:border-gray-700 transition-colors cursor-pointer">
               <div className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-full bg-dark-800 flex items-center justify-center text-primary-400 group-hover:bg-primary-500 group-hover:text-dark-900 transition-colors">
                 <Github size={24} />
               </div>
               <div className="min-w-0">
                 <p className="text-xs sm:text-sm text-gray-500 mb-1">GitHub</p>
-                <a href="https://github.com/Sara-prog10" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-lg font-medium text-gray-200 hover:text-white truncate block">
+                <div className="text-sm sm:text-lg font-medium text-gray-200 group-hover:text-white truncate block">
                   github.com/Sara-prog10
-                </a>
+                </div>
               </div>
-            </div>
+            </a>
 
-            <div className="bg-dark-900 border border-gray-800 p-4 sm:p-6 rounded-2xl flex items-center gap-4 sm:gap-6 group hover:border-gray-700 transition-colors">
+            <a href="https://www.linkedin.com/in/saravananravi17/" target="_blank" rel="noopener noreferrer" className="bg-dark-900 border border-gray-800 p-4 sm:p-6 rounded-2xl flex items-center gap-4 sm:gap-6 group hover:border-gray-700 transition-colors cursor-pointer">
               <div className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-full bg-dark-800 flex items-center justify-center text-white group-hover:bg-[#0A66C2] group-hover:text-white transition-colors">
                 <Linkedin size={24} />
               </div>
               <div className="min-w-0">
                 <p className="text-xs sm:text-sm text-gray-500 mb-1">LinkedIn</p>
-                <a href="https://www.linkedin.com/in/saravananravi17/" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-lg font-medium text-gray-200 hover:text-white truncate block">
+                <div className="text-sm sm:text-lg font-medium text-gray-200 group-hover:text-white truncate block">
                   linkedin.com/in/saravananravi17
-                </a>
+                </div>
               </div>
-            </div>
+            </a>
           </motion.div>
 
           {/* Contact Form Mock */}
@@ -138,9 +138,11 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-dark-900 border border-gray-800 p-8 rounded-2xl shadow-xl shadow-black/20"
+            className="bg-dark-900/80 backdrop-blur-md border border-gray-800 p-8 rounded-2xl shadow-[0_0_40px_rgba(212,175,55,0.05)] relative overflow-hidden group"
           >
-            <h3 className="text-xl font-bold text-white mb-6">Send a Message</h3>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="relative z-10">
+              <h3 className="text-xl font-bold text-white mb-6">Send a Message</h3>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
@@ -185,6 +187,7 @@ export function Contact() {
                 {!isSubmitting && <Send size={18} />}
               </button>
             </form>
+            </div>
           </motion.div>
         </div>
       </div>
