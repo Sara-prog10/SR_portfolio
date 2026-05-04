@@ -37,6 +37,24 @@ export function Contact() {
         message: message.trim(),
         createdAt: Date.now()
       });
+
+      try {
+        await fetch('https://theintellect.app.n8n.cloud/webhook/e26e1594-e7e6-4f20-9077-c5c0fee541c5', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: name.trim(),
+            email: email.trim(),
+            message: message.trim(),
+          }),
+        });
+      } catch (webhookErr) {
+        console.error('Error sending to webhook:', webhookErr);
+        console.warn('Note: If this is a "Failed to fetch" CORS error, ensure your n8n Webhook node has "Respond to CORS" enabled in its settings.');
+      }
+
       setSuccess(true);
       setName("");
       setEmail("");
@@ -95,20 +113,20 @@ export function Contact() {
               </div>
               <div className="min-w-0">
                 <p className="text-xs sm:text-sm text-gray-500 mb-1">GitHub</p>
-                <a href="#" className="text-sm sm:text-lg font-medium text-gray-200 hover:text-white truncate block">
-                  GitHub Profile
+                <a href="https://github.com/Sara-prog10" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-lg font-medium text-gray-200 hover:text-white truncate block">
+                  github.com/Sara-prog10
                 </a>
               </div>
             </div>
 
             <div className="bg-dark-900 border border-gray-800 p-4 sm:p-6 rounded-2xl flex items-center gap-4 sm:gap-6 group hover:border-gray-700 transition-colors">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-full bg-dark-800 flex items-center justify-center text-white group-hover:bg-white group-hover:text-dark-900 transition-colors">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 rounded-full bg-dark-800 flex items-center justify-center text-white group-hover:bg-[#0A66C2] group-hover:text-white transition-colors">
                 <Linkedin size={24} />
               </div>
               <div className="min-w-0">
-                <p className="text-xs sm:text-sm text-gray-500 mb-1">Social</p>
-                <a href="#" className="text-sm sm:text-lg font-medium text-gray-200 hover:text-white truncate block">
-                  LinkedIn Profile
+                <p className="text-xs sm:text-sm text-gray-500 mb-1">LinkedIn</p>
+                <a href="https://www.linkedin.com/in/saravananravi17/" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-lg font-medium text-gray-200 hover:text-white truncate block">
+                  linkedin.com/in/saravananravi17
                 </a>
               </div>
             </div>

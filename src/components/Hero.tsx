@@ -1,4 +1,3 @@
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight, Mail, Database, BrainCircuit, BarChart3, LineChart, Network } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -12,11 +11,11 @@ export function Hero() {
   const { content } = useContent();
 
   const features = [
-    { title: "Fault Reporting Agent", src: "https://lottie.host/21f24389-395c-41a7-ad6f-7b954a4d7940/4JqwZY4j2G.lottie" },
-    { title: "Interactive Chatbot", src: "https://lottie.host/5c465740-5cb3-4a1e-bd72-a0f4197c33b6/Wv7A1M89Hr.lottie" },
-    { title: "Web Development", src: "https://lottie.host/56350a1d-b7f5-4dbc-b243-542d4c55496d/rTi7LwBsQT.lottie" },
-    { title: "Building your own GPT", src: "https://lottie.host/74d4d5a0-1d51-4500-b254-1af2da26d402/MD1spJT7Q3.lottie" },
-    { title: "AI Automation", src: "https://lottie.host/97cf9778-aa63-4ae9-b9d0-7634d989456d/qSul9otxSn.lottie" }
+    { title: "Fault Reporting Agent", src: "https://lottie.host/embed/21f24389-395c-41a7-ad6f-7b954a4d7940/4JqwZY4j2G.lottie" },
+    { title: "Interactive Chatbot", src: "https://lottie.host/embed/5c465740-5cb3-4a1e-bd72-a0f4197c33b6/Wv7A1M89Hr.lottie" },
+    { title: "Web Development", src: "https://lottie.host/embed/56350a1d-b7f5-4dbc-b243-542d4c55496d/rTi7LwBsQT.lottie" },
+    { title: "Building your own GPT", src: "https://lottie.host/embed/74d4d5a0-1d51-4500-b254-1af2da26d402/MD1spJT7Q3.lottie" },
+    { title: "AI Automation", src: "https://lottie.host/embed/97cf9778-aa63-4ae9-b9d0-7634d989456d/qSul9otxSn.lottie" }
   ];
   const [featureIndex, setFeatureIndex] = useState(0);
 
@@ -75,7 +74,7 @@ export function Hero() {
       </div>
       <div className="flex items-center justify-center min-w-[140px] sm:min-w-[180px] lg:min-w-[200px]">
         <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center -ml-2 sm:-ml-4">
-          <DotLottieReact src="https://lottie.host/388b597f-9062-41f1-a539-a651af474d65/bAz62Lp6eU.lottie" loop autoplay style={{ width: '100%', height: '100%' }} />
+          <iframe src="https://lottie.host/embed/388b597f-9062-41f1-a539-a651af474d65/bAz62Lp6eU.lottie" style={{ width: '100%', height: '100%', border: 'none' }}></iframe>
         </div>
       </div>
     </>
@@ -190,12 +189,12 @@ export function Hero() {
                       className="flex-1 w-full flex items-center justify-center absolute inset-0 pb-16"
                     >
                       <div className="w-[300px] h-[300px]">
-                        <DotLottieReact src={features[featureIndex].src} loop autoplay style={{ width: '100%', height: '100%' }} />
+                        <iframe src={features[featureIndex].src} style={{ width: '100%', height: '100%', border: 'none' }}></iframe>
                       </div>
                     </motion.div>
                   </AnimatePresence>
                   
-                  <div className="absolute bottom-10 left-0 right-0 h-10">
+                  <div className="absolute bottom-12 left-0 right-0 h-10">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={`title-${featureIndex}`}
