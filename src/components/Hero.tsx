@@ -163,51 +163,51 @@ export function Hero() {
            initial={{ opacity: 0, scale: 0.9 }}
            animate={{ opacity: 1, scale: 1 }}
            transition={{ duration: 1, delay: 0.2 }}
-           className="hidden lg:block relative"
+           className="w-full relative mt-12 lg:mt-0"
         >
-            <div className="w-full aspect-[4/3] rounded-2xl bg-dark-900 border border-gray-800 shadow-2xl overflow-hidden relative flex flex-col group">
-              <div className="absolute top-0 inset-x-0 h-10 bg-dark-800 border-b border-gray-800 flex items-center px-4 gap-2 z-10">
-                <div className="w-3 h-3 rounded-full bg-red-400/50"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-400/50"></div>
-                <div className="w-3 h-3 rounded-full bg-green-400/50"></div>
-                <div className="ml-auto flex gap-2">
-                  <div className="w-4 h-4 rounded-sm bg-gray-700/50"></div>
-                  <div className="w-12 h-4 rounded-sm bg-gray-700/50"></div>
-                </div>
-              </div>
-              <div className="absolute inset-0 pt-10 px-8 pb-8 flex flex-col items-center justify-center bg-dark-900 overflow-hidden z-0">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.05)_0%,transparent_70%)]"></div>
-                
-                <div className="relative w-full h-full flex flex-col items-center justify-center">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={`lottie-${featureIndex}`}
-                      initial={{ opacity: 0, scale: 0.8, filter: 'blur(10px)' }}
-                      animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                      exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
-                      transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
-                      className="flex-1 w-full flex items-center justify-center absolute inset-0 pb-16"
-                    >
-                      <div className="w-[300px] h-[300px]">
-                        <iframe src={features[featureIndex].src} style={{ width: '100%', height: '100%', border: 'none' }}></iframe>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-                  
-                  <div className="absolute bottom-12 left-0 right-0 h-10">
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={`title-${featureIndex}`}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-center w-full absolute inset-0"
-                      >
-                        <h3 className="text-2xl font-bold font-display text-transparent bg-clip-text bg-gradient-to-r from-primary-200 to-primary-500">
-                          {features[featureIndex].title}
-                        </h3>
-                      </motion.div>
+            <div className="w-full aspect-square sm:aspect-[4/3] rounded-2xl bg-transparent sm:bg-dark-900 border-none sm:border sm:border-gray-800 shadow-none sm:shadow-2xl overflow-hidden relative flex flex-col group">
+               <div className="hidden sm:flex absolute top-0 inset-x-0 h-10 bg-dark-800 border-b border-gray-800 items-center px-4 gap-2 z-10">
+                 <div className="w-3 h-3 rounded-full bg-red-400/50"></div>
+                 <div className="w-3 h-3 rounded-full bg-yellow-400/50"></div>
+                 <div className="w-3 h-3 rounded-full bg-green-400/50"></div>
+                 <div className="ml-auto flex gap-2">
+                   <div className="w-4 h-4 rounded-sm bg-gray-700/50"></div>
+                   <div className="w-12 h-4 rounded-sm bg-gray-700/50"></div>
+                 </div>
+               </div>
+               <div className="absolute inset-0 pt-0 sm:pt-10 px-4 sm:px-8 pb-4 sm:pb-8 flex flex-col items-center justify-center bg-transparent sm:bg-dark-900 overflow-hidden z-0">
+                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.05)_0%,transparent_70%)]"></div>
+                 
+                 <div className="relative w-full h-full flex flex-col items-center justify-center">
+                   <AnimatePresence mode="wait">
+                     <motion.div
+                       key={`lottie-${featureIndex}`}
+                       initial={{ opacity: 0, scale: 0.8, filter: 'blur(10px)' }}
+                       animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                       exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
+                       transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
+                       className="flex-1 w-full flex items-center justify-center absolute inset-0 pb-16 sm:pb-16"
+                     >
+                       <div className="w-[200px] h-[200px] sm:w-[300px] sm:h-[300px]">
+                         <iframe src={features[featureIndex].src} style={{ width: '100%', height: '100%', border: 'none' }}></iframe>
+                       </div>
+                     </motion.div>
+                   </AnimatePresence>
+                   
+                   <div className="absolute bottom-10 sm:bottom-12 left-0 right-0 h-10">
+                     <AnimatePresence mode="wait">
+                       <motion.div
+                         key={`title-${featureIndex}`}
+                         initial={{ opacity: 0, y: 10 }}
+                         animate={{ opacity: 1, y: 0 }}
+                         exit={{ opacity: 0, y: -10 }}
+                         transition={{ duration: 0.3 }}
+                         className="text-center w-full absolute inset-0 px-4"
+                       >
+                         <h3 className="text-xl sm:text-2xl font-bold font-display text-transparent bg-clip-text bg-gradient-to-r from-primary-200 to-primary-500">
+                           {features[featureIndex].title}
+                         </h3>
+                       </motion.div>
                     </AnimatePresence>
                   </div>
                 </div>
