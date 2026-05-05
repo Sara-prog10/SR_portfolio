@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { SKILLS } from "../lib/constants";
-import * as LucideIcons from "lucide-react";
+import { IconMap } from "../lib/iconMap";
 import { useContent } from "../contexts/ContentContext";
 
 export function Skills() {
@@ -33,7 +33,7 @@ export function Skills() {
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-min">
           {skillsList.map((skillGroup: any, groupIdx: number) => {
-            const Icon = (LucideIcons as any)[skillGroup.icon] || LucideIcons.Code2;
+            const Icon = IconMap[skillGroup.icon] || IconMap.Code2;
             const isLarge = groupIdx === 0 || groupIdx === 3;
             
             return (

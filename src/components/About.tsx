@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import * as LucideIcons from "lucide-react";
+import { IconMap } from "../lib/iconMap";
 import { useContent } from "../contexts/ContentContext";
 
 export function About() {
@@ -49,7 +49,7 @@ export function About() {
 
           <div className="grid sm:grid-cols-2 gap-4">
             {highlights.map((item: any, index: number) => {
-              const Icon = (LucideIcons as any)[item.icon] || LucideIcons.Bot;
+              const Icon = IconMap[item.icon] || IconMap.Bot;
               return (
                 <motion.div
                   key={index}

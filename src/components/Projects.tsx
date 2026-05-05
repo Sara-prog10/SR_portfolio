@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { ExternalLink, Github } from "lucide-react";
 import { PROJECTS } from "../lib/constants";
-import * as LucideIcons from "lucide-react";
+import { IconMap } from "../lib/iconMap";
 import { useContent } from "../contexts/ContentContext";
 import { TiltCard } from "./ui/TiltCard";
 
@@ -36,7 +36,7 @@ export function Projects() {
 
         <div className="grid lg:grid-cols-2 gap-8" style={{ perspective: "1000px" }}>
           {projectsList.map((project: any, idx: number) => {
-            const Icon = (LucideIcons as any)[project.icon] || LucideIcons.Folder;
+            const Icon = IconMap[project.icon] || IconMap.Folder;
             return (
               <TiltCard key={project.id || idx} className="h-full flex">
                 <motion.div
