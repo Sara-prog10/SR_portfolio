@@ -19,28 +19,7 @@ export default defineConfig(({mode}) => {
       hmr: process.env.DISABLE_HMR !== 'true',
     },
     build: {
-      target: 'esnext',
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
-                return 'vendor-react';
-              }
-              if (id.includes('motion')) {
-                return 'vendor-motion';
-              }
-              if (id.includes('lucide-react')) {
-                return 'vendor-lucide';
-              }
-              if (id.includes('@google/genai')) {
-                return 'vendor-ai';
-              }
-              return 'vendor';
-            }
-          }
-        }
-      }
+      target: 'esnext'
     }
   };
 });
