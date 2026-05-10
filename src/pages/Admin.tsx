@@ -1,7 +1,7 @@
 import { useState, FormEvent, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useContent } from '../contexts/ContentContext';
-import { db, loginWithEmail, logOut } from '../lib/firebase';
+import { db, loginWithEmail, logOut, resetPassword } from '../lib/firebase';
 import { ref, onValue, remove } from 'firebase/database';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Save, LogOut, Check, Trash2, Mail, LayoutTemplate } from 'lucide-react';
@@ -28,6 +28,8 @@ export function Admin() {
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
+  const [resetMessage, setResetMessage] = useState('');
 
   useEffect(() => {
     if (user && isAdmin) {
@@ -65,6 +67,26 @@ export function Admin() {
       await loginWithEmail(email, password);
     } catch (err: any) {
       setLoginError('Invalid email or password.');
+    } finally {
+      setIsLoggingIn(false);
+    }
+  };
+
+  const handleResetPassword = async (e: FormEvent) => {
+    e.preventDefault();
+    setResetMessage('');
+    setLoginError('');
+    if (!email) {
+      setLoginError('Please enter your email to reset password.');
+      return;
+    }
+    setIsLoggingIn(true);
+    try {
+      await resetPassword(email);
+      setResetMessage('Password reset email sent. Please check your inbox.');
+      setIsResetting(false);
+    } catch (err: any) {
+      setLoginError(err.message || 'Failed to send reset email.');
     } finally {
       setIsLoggingIn(false);
     }
@@ -120,9 +142,9 @@ export function Admin() {
       <div className="min-h-screen bg-dark-950 flex flex-col items-center justify-center p-6">
         <div className="max-w-md w-full bg-dark-900 border border-gray-800 p-8 rounded-2xl shadow-xl text-center">
           <h1 className="text-2xl font-bold text-white mb-2">Admin Portal</h1>
-          <p className="text-gray-400 mb-8">Sign in with your email and password.</p>
+          <p className="text-gray-400 mb-8">{isResetting ? "Reset your password." : "Sign in with your email and password."}</p>
           
-          <form onSubmit={handleLogin} className="flex flex-col gap-4">
+          <form onSubmit={isResetting ? handleResetPassword : handleLogin} className="flex flex-col gap-4">
             <input
               type="email"
               placeholder="Email address"
@@ -131,30 +153,47 @@ export function Admin() {
               onChange={e => setEmail(e.target.value)}
               className="w-full bg-dark-950 border border-gray-700 rounded-lg p-3 text-white focus:border-primary-500 focus:outline-none transition-colors"
             />
-            <input
-              type="password"
-              placeholder="Password"
-              required
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              className="w-full bg-dark-950 border border-gray-700 rounded-lg p-3 text-white focus:border-primary-500 focus:outline-none transition-colors"
-            />
+            {!isResetting && (
+              <input
+                type="password"
+                placeholder="Password"
+                required
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                className="w-full bg-dark-950 border border-gray-700 rounded-lg p-3 text-white focus:border-primary-500 focus:outline-none transition-colors"
+              />
+            )}
             {loginError && <p className="text-red-400 text-sm text-left">{loginError}</p>}
+            {resetMessage && <p className="text-green-400 text-sm text-left">{resetMessage}</p>}
+            
             <button
               type="submit"
               disabled={isLoggingIn}
               className="w-full py-3 mt-2 bg-primary-500 text-dark-950 hover:bg-primary-400 disabled:bg-primary-500/50 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
             >
-              {isLoggingIn ? 'Signing in...' : 'Sign in'}
+              {isLoggingIn ? 'Processing...' : isResetting ? 'Send Reset Email' : 'Sign in'}
             </button>
           </form>
-          
-          <button 
-            onClick={() => navigate('/')} 
-            className="mt-6 text-sm text-gray-500 hover:text-white transition-colors flex items-center justify-center gap-2 mx-auto"
-          >
-            <ArrowLeft size={16} /> Back to site
-          </button>
+
+          <div className="flex flex-col gap-4 mt-6">
+            <button 
+              onClick={() => {
+                setIsResetting(!isResetting);
+                setLoginError('');
+                setResetMessage('');
+              }}
+              className="text-sm text-primary-400 hover:text-primary-300 transition-colors"
+            >
+              {isResetting ? "Back to Login" : "Forgot Password?"}
+            </button>
+
+            <button 
+              onClick={() => navigate('/')} 
+              className="text-sm text-gray-500 hover:text-white transition-colors flex items-center justify-center gap-2 mx-auto"
+            >
+              <ArrowLeft size={16} /> Back to site
+            </button>
+          </div>
         </div>
       </div>
     );
