@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from 'firebase/auth';
 import { getDatabase, ref, get } from 'firebase/database';
 import { getFirestore } from 'firebase/firestore';
 import firebaseConfig from '../../firebase-applet-config.json';
@@ -64,6 +64,10 @@ export function handleDBError(error: unknown, operationType: OperationType, path
 
 export async function loginWithEmail(email: string, pass: string) {
   await signInWithEmailAndPassword(auth, email, pass);
+}
+
+export async function resetPassword(email: string) {
+  await sendPasswordResetEmail(auth, email);
 }
 
 export async function logOut() {
